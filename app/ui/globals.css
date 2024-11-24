@@ -1,8 +1,10 @@
 :root{
    --bg:#151c2c;
    --bgSoft:#182237;
+   --bgSofter:#2e374a;
    --text:white;
    --textSoft:#b7bac1;
+   --purple:#5d57c9;
 }
 
 *{

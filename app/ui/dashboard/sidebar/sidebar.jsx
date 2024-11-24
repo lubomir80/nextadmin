@@ -5,7 +5,8 @@ import styles from "./sidebar.module.css"
 import {
    MdDashboard, MdSupervisedUserCircle,
    MdShoppingBag, MdAttachMoney, MdWork,
-   MdAnalytics, MdPeople, MdOutlineSettings, MdHelpCenter
+   MdAnalytics, MdPeople, MdOutlineSettings, MdHelpCenter,
+   MdLogout
 } from "react-icons/md"
 
 const menuItems = [
@@ -97,6 +98,10 @@ function Sidebar() {
                )
             })}
          </ul>
+         <button className={styles.logout}>
+            <MdLogout />
+            Logout
+         </button>
       </div >
    )
 }
