@@ -46,7 +46,7 @@ function UsersPage() {
                   <td>active</td>
                   <td>
                      <div className={styles.buttons}>
-                        <Link href="/">
+                        <Link href="/dashboard/users/tests">
                            <button className={`${styles.button} ${styles.view}`}>View</button>
                         </Link>
                         <button className={`${styles.button} ${styles.delete}`}>Delete</button>
@@ -71,7 +71,7 @@ function UsersPage() {
                   <td>active</td>
                   <td>
                      <div className={styles.buttons}>
-                        <Link href="/">
+                        <Link href="/dashboard/users/test">
                            <button className={`${styles.button} ${styles.view}`}>View</button>
                         </Link>
                         <button className={`${styles.button} ${styles.delete}`}>Delete</button>
