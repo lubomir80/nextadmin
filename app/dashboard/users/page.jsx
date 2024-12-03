@@ -6,8 +6,9 @@ import { fetchUsers } from "@/libs/data"
 import Link from "next/link"
 
 
-async function UsersPage() {
-   const users = await fetchUsers()
+async function UsersPage({ searchParams }) {
+   const q = searchParams?.q || ""
+   const users = await fetchUsers(q)
 
 
    return (
