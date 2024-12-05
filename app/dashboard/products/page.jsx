@@ -3,8 +3,13 @@ import Search from "@/app/ui/dashboard/search/search"
 import Image from "next/image"
 import Link from "next/link"
 import styles from "@/app/ui/dashboard/products/products.module.css"
+import { fetchProducts } from "@/libs/data"
 
-function ProductsPage() {
+async function ProductsPage() {
+   const { products, count } = await fetchProducts()
+
+
+
    return (
       <div className={styles.container}>
          <div className={styles.top}>
