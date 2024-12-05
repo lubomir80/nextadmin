@@ -1,4 +1,5 @@
 import styles from "@/app/ui/dashboard/products/products.module.css"
+import { deleteProduct } from "@/libs/actions"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -28,7 +29,10 @@ function ProductItem({ products }) {
                <Link href={`/dashboard/products/${id}`}>
                   <button className={`${styles.button} ${styles.view}`}>View</button>
                </Link>
-               <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+               <form action={deleteProduct}>
+                  <input value={id} name="id" type="hidden" />
+                  <button type="submit" className={`${styles.button} ${styles.delete}`}>Delete</button>
+               </form>
             </div>
          </td>
       </tr>

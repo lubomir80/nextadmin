@@ -37,6 +37,23 @@ export const addUser = async (formData) => {
    redirect("/dashboard/users");
 };
 
+export const deleteUser = async (formData) => {
+   const { id } =
+      Object.fromEntries(formData);
+   try {
+      connectMongoDB()
+      await User.findByIdAndDelete(id);
+
+   } catch (error) {
+      console.log(error);
+      throw new Error("Failed to delete user!");
+   }
+
+   revalidatePath("/dashboard/users");
+};
+
+
+
 
 export const addProduct = async (formData) => {
    const { title, price, stock, color, size, desc } =
@@ -57,9 +74,25 @@ export const addProduct = async (formData) => {
       await newUser.save();
    } catch (error) {
       console.log(error);
-      throw new Error("Failed to create user!");
+      throw new Error("Failed to create product!");
    }
 
    revalidatePath("/dashboard/products");
    redirect("/dashboard/products");
+};
+
+
+export const deleteProduct = async (formData) => {
+   const { id } =
+      Object.fromEntries(formData);
+   try {
+      connectMongoDB()
+      await Product.findByIdAndDelete(id);
+
+   } catch (error) {
+      console.log(error);
+      throw new Error("Failed to delete product!");
+   }
+
+   revalidatePath("/dashboard/products");
 };

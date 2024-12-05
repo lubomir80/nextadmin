@@ -1,4 +1,5 @@
 import styles from "@/app/ui/dashboard/users/users.module.css"
+import { deleteUser } from "@/libs/actions"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -27,7 +28,10 @@ function UserItem({ user }) {
                <Link href={`/dashboard/users/${id}`}>
                   <button className={`${styles.button} ${styles.view}`}>View</button>
                </Link>
-               <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+               <form action={deleteUser}>
+                  <input type="hidden" name="id" value={id} />
+                  <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+               </form>
             </div>
          </td>
       </tr>
