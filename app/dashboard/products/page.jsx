@@ -7,8 +7,8 @@ import ProductItem from "@/app/ui/dashboard/products/productItem/productItem"
 
 async function ProductsPage({ searchParams }) {
    const q = searchParams?.q || ""
-   const page = searchParams?.page || ""
-   const { products, count } = await fetchProducts(q, page)
+   const page = searchParams?.page || 1
+   const { count, products } = await fetchProducts(q, page)
 
 
 

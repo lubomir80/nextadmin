@@ -1,3 +1,4 @@
+import { unstable_noStore as noStore } from 'next/cache';
 import styles from "@/app/ui/dashboard/users/users.module.css"
 import Link from "next/link"
 import Pagination from "@/app/ui/dashboard/pagination/pagination"
@@ -7,6 +8,7 @@ import { fetchUsers } from "@/libs/data"
 
 
 async function UsersPage({ searchParams }) {
+   noStore();
    const q = searchParams?.q || ""
    const page = searchParams?.page || 1
    const { users, count } = await fetchUsers(q, page)
