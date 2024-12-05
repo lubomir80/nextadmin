@@ -20,6 +20,20 @@ export const fetchUsers = async (q, page) => {
    }
 }
 
+export const fetchUser = async (id) => {
+   try {
+      connectMongoDB()
+      const user = await User.findById(id)
+      return user
+
+   } catch (err) {
+      console.log(err);
+      throw new Error("Failed fetch data User")
+   }
+}
+
+
+
 export const fetchProducts = async (q, page) => {
    const regex = new RegExp(q, "i")
 
@@ -35,5 +49,17 @@ export const fetchProducts = async (q, page) => {
    } catch (err) {
       console.log(err);
       throw new Error("Failed fetch data Products")
+   }
+}
+
+export const fetchProduct = async (id) => {
+   try {
+      connectMongoDB()
+      const product = await Product.findById(id)
+      return product
+
+   } catch (err) {
+      console.log(err);
+      throw new Error("Failed fetch data Product")
    }
 }
