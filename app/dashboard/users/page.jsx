@@ -1,14 +1,16 @@
+import styles from "@/app/ui/dashboard/users/users.module.css"
+import Link from "next/link"
 import Pagination from "@/app/ui/dashboard/pagination/pagination"
 import Search from "@/app/ui/dashboard/search/search"
 import UserItem from "@/app/ui/dashboard/users/userItem/userItem"
-import styles from "@/app/ui/dashboard/users/users.module.css"
 import { fetchUsers } from "@/libs/data"
-import Link from "next/link"
 
 
 async function UsersPage({ searchParams }) {
    const q = searchParams?.q || ""
-   const users = await fetchUsers(q)
+   const page = searchParams?.page || 1
+   const { users, count } = await fetchUsers(q, page)
+
 
 
    return (
@@ -32,11 +34,11 @@ async function UsersPage({ searchParams }) {
             </thead>
 
             <tbody>
-               {users.map((user) => <UserItem user={user} key={user.id} />
+               {users?.map((user) => <UserItem user={user} key={user.id} />
                )}
             </tbody>
          </table>
-         <Pagination />
+         <Pagination count={count} />
       </div >
    )
 }
