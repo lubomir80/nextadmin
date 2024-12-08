@@ -1,10 +1,13 @@
 import styles from "@/app/ui/dashboard/users/singleUser/singleUser.module.css"
+import { updateUser } from "@/libs/actions";
 import { fetchUser } from "@/libs/data";
 import Image from "next/image"
 
 async function SingleUserPage({ params }) {
    const { id } = params;
    const user = await fetchUser(id)
+
+   console.log(user.isAdmin);
 
 
    return (
@@ -16,31 +19,32 @@ async function SingleUserPage({ params }) {
             <p>{user.username}</p>
          </div>
          <div className={styles.formContainer}>
-            <form action="" className={styles.form}>
-               <label>{user.username}</label>
-               <input type="text" placeholder="Andrzej Sapkowski" name="name" required />
+            <form action={updateUser} className={styles.form}>
+               <input type="hidden" name="id" value={user.id} />
+               <label>Username</label>
+               <input type="text" placeholder={user.username} name="name" required />
                <label>Email</label>
-               <input type="email" placeholder="asapkowski@gmail.com" name="email" required />
+               <input type="email" placeholder={user.email} name="email" required />
                <label>Password</label>
                <input type="password" name="password" required />
                <label>Phone</label>
-               <input type="phone" placeholder="555333888" name="phone" />
+               <input type="phone" placeholder={user.phone} name="phone" />
                <label>Address</label>
                <textarea
                   name="address"
                   id="address"
-                  placeholder="Mickiewicza, 5/55, Łódź"
+                  placeholder={user.address}
                   rows="2">
                </textarea>
                <label>Is Admin?</label>
-               <select name="isAdmin" id="isAdmin">
-                  <option value={true}>yes</option>
-                  <option value={false}>no</option>
+               <select name="isAdmin" id="isAdmin" >
+                  <option value={true} selected={user.isAdmin}>yes</option>
+                  <option value={false} selected={!user.isAdmin}>no</option>
                </select>
                <label>Is Active?</label>
                <select name="isActive" id="isActive">
-                  <option value={true}>yes</option>
-                  <option value={false}>no</option>
+                  <option value={true} selected={user.isActive}>yes</option>
+                  <option value={false} selected={!user.isActive}>no</option>
                </select>
                <button type="submit">Update</button>
             </form>
